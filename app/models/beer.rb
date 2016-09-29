@@ -1,4 +1,4 @@
 class Beer < ActiveRecord::Base
-#Sundar 
+	belongs_to :brew
 end
 
