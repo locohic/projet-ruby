@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915085358) do
+ActiveRecord::Schema.define(version: 20160929093139) do
+
+  create_table "beer_geeks", force: :cascade do |t|
+    t.string   "name"
+    t.text     "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "beers", force: :cascade do |t|
     t.string   "name"
@@ -20,9 +27,11 @@ ActiveRecord::Schema.define(version: 20160915085358) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "brasserie_id"
+    t.integer  "brew_id"
   end
 
   add_index "beers", ["brasserie_id"], name: "index_beers_on_brasserie_id"
+  add_index "beers", ["brew_id"], name: "index_beers_on_brew_id"
 
   create_table "brews", force: :cascade do |t|
     t.string   "name"
@@ -31,5 +40,16 @@ ActiveRecord::Schema.define(version: 20160915085358) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "notes", force: :cascade do |t|
+    t.integer  "star"
+    t.integer  "beer_geek_id"
+    t.integer  "beer_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "notes", ["beer_geek_id"], name: "index_notes_on_beer_geek_id"
+  add_index "notes", ["beer_id"], name: "index_notes_on_beer_id"
 
 end
