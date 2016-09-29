@@ -15,5 +15,12 @@
   <%= @beer.brew.name %>
 </p>
 
+<p>
+  <strong>Notes:</strong>
+  <% @beer.notes.each do |note| %>
+<%= note.beer_geek.name + "" + note.star.to_s %>
+<% end %>
+</p>
+
 <%= link_to 'Edit', edit_beer_path(@beer) %> |
 <%= link_to 'Back', beers_path %>
